@@ -29,26 +29,26 @@
 			font-size: 50%;
 			font-weight: 800;
 			text-align: center;
-            color: $primary-header-background;
-            transform: translateY(8px) translateX(2px);
-        }
-        .noti{
-            animation: noti 1s forwards;
+			color: $primary-header-background;
+			transform: translateY(8px) translateX(2px);
 		}
-		&__list{
+		.noti {
+			animation: noti 1s forwards;
+		}
+		&__list {
 			position: absolute;
 			left: 50%;
-			top:8vh;
-			background-color:$color-background;
+			top: 8vh;
+			background-color: $color-background;
 			width: 40%;
 			padding: 1em 2em;
 			z-index: 100;
 			border-radius: 10px;
 			transform: translateX(-50%);
 			border: 1px solid $primary-header-background;
-			box-shadow: 0 0 15px rgba(0,0,0,.25);
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
 
-			ul{
+			ul {
 				list-style-type: none;
 			}
 		}

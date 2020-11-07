@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react"
-import { useStateValue } from "../context/StateProvider"
-import "../style/css/Body.css"
-import callAPIGetListIssues from "../helpers/issues"
 import { FETCH_CONFIG } from "../config/vars"
+import { useStateValue } from "../context/StateProvider"
+import callAPIGetListIssues from "../helpers/issues"
+import "../style/css/Body.css"
 
 function Body() {
 	const [{}, dispatch] = useStateValue()
 	const [issues, setIssues] = useState([])
-	const [pageChange, setPageChange] = useState("1")
+	const [pageChange, setPageChange] = useState(1)
 	const [currentPage, setCurrentPage] = useState(
 		FETCH_CONFIG.DEFAULT_CURRENT_PAGE
 	)
+
+	// <!-- Get list issues based on current page -->
 	useEffect(() => {
 		try {
 			const getListIssues = async () => {
@@ -23,10 +25,13 @@ function Body() {
 		}
 	}, [currentPage])
 
+	// <!-- Next page -->
 	const nextPage = () => {
 		setCurrentPage(currentPage + 1)
 		setPageChange(currentPage + 1)
 	}
+
+	// <!-- Previous page -->
 	const prevPage = () => {
 		if (currentPage - 1 < 1) {
 			setCurrentPage(1)
@@ -36,6 +41,8 @@ function Body() {
 			setPageChange(currentPage - 1)
 		}
 	}
+
+	// <!-- Input page to get list issues -->
 	const submitPage = (e) => {
 		e.preventDefault()
 		if (pageChange <= 0) return alert("Page must be greater than 0")
@@ -46,9 +53,10 @@ function Body() {
 		setPageChange(parseInt(e.target.value))
 	}
 
+	// <!-- Toggle highlighted -->
 	const handleClickIssue = (issue) => {
 		const clickIssue = document.getElementsByClassName(`${issue.id}`)[0]
-		if(clickIssue.className.includes('highlighted')) {
+		if (clickIssue.className.includes("highlighted")) {
 			clickIssue.classList.remove("highlighted")
 		} else {
 			document.querySelector(".highlighted")?.classList.remove("highlighted")

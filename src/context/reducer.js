@@ -1,6 +1,6 @@
-import {NUM_HIGHLIGHTED_ISSUES_SHOW} from '../config/vars'
+import { NUM_HIGHLIGHTED_ISSUES_SHOW } from "../config/vars"
 export const initialState = {
-	highlightedIssues:[]
+	highlightedIssues: [],
 }
 
 const reducer = (state, action) => {
@@ -8,7 +8,9 @@ const reducer = (state, action) => {
 		case "SET_HIGHLIGHTED_ISSUES":
 			return {
 				...state,
-				highlightedIssues: [...new Set([action.highlightedIssues,...state.highlightedIssues])].slice(0,NUM_HIGHLIGHTED_ISSUES_SHOW),
+				highlightedIssues: [
+					...new Set([action.highlightedIssues, ...state.highlightedIssues]),
+				].slice(0, NUM_HIGHLIGHTED_ISSUES_SHOW),
 			}
 
 		default:

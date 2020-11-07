@@ -5,6 +5,8 @@ import "../style/css/Header.css"
 function Header() {
 	const [isShowNoti, setIsShowNoti] = useState(false)
 	const [{ highlightedIssues }, dispatch] = useStateValue()
+
+	// <!-- Toggle counting animation -->
 	useEffect(() => {
 		setTimeout(() => {
 			document
@@ -12,10 +14,6 @@ function Header() {
 				.classList.remove("noti")
 		}, 1000)
 		document.querySelector(".header__notification__count").classList.add("noti")
-	}, [highlightedIssues])
-
-	useEffect(() => {
-		console.log(highlightedIssues)
 	}, [highlightedIssues])
 
 	return (
@@ -30,7 +28,9 @@ function Header() {
 					<div className="header__notification__list">
 						<ul>
 							{highlightedIssues?.map((issue) => (
-								<li key={issue.id}>[#{issue.id}] - {issue.title}</li>
+								<li key={issue.id}>
+									[#{issue.id}] - {issue.title}
+								</li>
 							))}
 						</ul>
 					</div>
