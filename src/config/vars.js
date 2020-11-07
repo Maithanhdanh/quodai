@@ -15,4 +15,4 @@ export const NAVIGATION_DOMAIN = {
 }
 
 // <!-- Number of issues shown on clicked panel -->
-export const NUM_HIGHLIGHTED_ISSUES_SHOW = 8
+export const NUM_HIGHLIGHTED_ISSUES_SHOW = 5

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { useStateValue } from "../context/StateProvider"
-import "../style/css/Header.css"
+import { useStateValue } from "../../context/StateProvider"
+import "../../style/css/Header.css"
 
 function Header() {
 	const [isShowNoti, setIsShowNoti] = useState(false)
@@ -12,7 +12,7 @@ function Header() {
 			document
 				.querySelector(".header__notification__count")
 				.classList.remove("noti")
-		}, 1000)
+		}, 500)
 		document.querySelector(".header__notification__count").classList.add("noti")
 	}, [highlightedIssues])
 
