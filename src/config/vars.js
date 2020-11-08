@@ -5,8 +5,8 @@ if (process.env.REACT_ENV !== "production") {
 
 // <!-- Default variable for API paginated issues -->
 export const FETCH_CONFIG = {
-	DEFAULT_CURRENT_PAGE: parseInt(process.env.REACT_APP_DEFAULT_CURRENT_PAGE),
-	PER_PAGE: parseInt(process.env.REACT_APP_PER_PAGE),
+	DEFAULT_CURRENT_PAGE: parseInt(process.env.REACT_APP_DEFAULT_CURRENT_PAGE) || 1,
+	PER_PAGE: parseInt(process.env.REACT_APP_PER_PAGE) || 5,
 }
 
 // <!-- Navigate domain -->
@@ -15,4 +15,4 @@ export const NAVIGATION_DOMAIN = {
 }
 
 // <!-- Number of issues shown on clicked panel -->
-export const NUM_HIGHLIGHTED_ISSUES_SHOW = process.env.REACT_APP_NUM_HIGHLIGHTED_ISSUES_SHOW
+export const NUM_HIGHLIGHTED_ISSUES_SHOW = process.env.REACT_APP_NUM_HIGHLIGHTED_ISSUES_SHOW || 5

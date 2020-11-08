@@ -53,6 +53,7 @@ The project is hosted by Heroku using connection to Github repository
 - Add environment variable.
   + to asign, you need access config vars session in setting tab
   + example: `REACT_APP_API_URL_DOMAIN=https://domain.com`
+  + variables include: `REACT_APP_API_URL_DOMAIN`, `REACT_APP_DEFAULT_CURRENT_PAGE`, `REACT_APP_NUM_HIGHLIGHTED_ISSUES_SHOW`, `REACT_APP_PER_PAGE`
 - Add buildpack.
   + Paste [https://github.com/Maithanhdanh/create-react-app-buildpack.git](https://github.com/Maithanhdanh/create-react-app-buildpack.git)
 - Deploy app.
