@@ -7,7 +7,7 @@ import "../../style/css/Body.css"
 function Body() {
 	const [{}, dispatch] = useStateValue()
 	const [issues, setIssues] = useState([])
-	const [pageChange, setPageChange] = useState(1)
+	const [pageChange, setPageChange] = useState(FETCH_CONFIG.DEFAULT_CURRENT_PAGE)
 	const [currentPage, setCurrentPage] = useState(
 		FETCH_CONFIG.DEFAULT_CURRENT_PAGE
 	)
