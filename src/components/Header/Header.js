@@ -3,8 +3,10 @@ import { NUM_HIGHLIGHTED_ISSUES_SHOW } from "../../config/vars"
 import { useStateValue } from "../../context/StateProvider"
 import useOnClickOutside from "../../hooks/useOutSideClick"
 import "../../style/css/Header.css"
+const _ = require('lodash');
 
 function Header() {
+	const prevHighlightedIssues = useRef([])
 	const [{ highlightedIssues }, dispatch] = useStateValue()
 	const [notiCount, setNotiCount] = useState(highlightedIssues?.length || 0)
 
@@ -18,6 +20,7 @@ function Header() {
 
 	// <!-- Toggle counting animation -->
 	useEffect(() => {
+		if (_.isEqual(prevHighlightedIssues.current, highlightedIssues)) return null
 		setTimeout(() => {
 			setShowAnimation(false)
 		}, 500)
@@ -30,9 +33,15 @@ function Header() {
 
 		setIsShowNotiCount(true)
 		if (notiCount + 1 > NUM_HIGHLIGHTED_ISSUES_SHOW)
-			return setNotiCount(NUM_HIGHLIGHTED_ISSUES_SHOW)
+			{
+				prevHighlightedIssues.current = highlightedIssues
+				setNotiCount(NUM_HIGHLIGHTED_ISSUES_SHOW)
+				return
+			}
 
-		setNotiCount(notiCount + 1)
+		if (!_.isEqual(prevHighlightedIssues.current, highlightedIssues)) setNotiCount(notiCount + 1)
+
+		prevHighlightedIssues.current = highlightedIssues
 	}, [highlightedIssues])
 
 	// <!-- Handle onClick icon -->
