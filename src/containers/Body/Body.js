@@ -7,7 +7,10 @@ import "../../style/css/Body.css"
 function Body() {
 	const [{}, dispatch] = useStateValue()
 	const [issues, setIssues] = useState([])
-	const [pageChange, setPageChange] = useState(FETCH_CONFIG.DEFAULT_CURRENT_PAGE)
+	const [pageChange, setPageChange] = useState(
+		FETCH_CONFIG.DEFAULT_CURRENT_PAGE
+	)
+	const [highlightedItem, setHighlightedItem] = useState(null)
 	const [currentPage, setCurrentPage] = useState(
 		FETCH_CONFIG.DEFAULT_CURRENT_PAGE
 	)
@@ -24,6 +27,11 @@ function Body() {
 			console.log(err)
 		}
 	}, [currentPage])
+
+	// <!-- Reset highlighted item -->
+	useEffect(() => {
+		setHighlightedItem(null)
+	}, [issues])
 
 	// <!-- Next page -->
 	const nextPage = () => {
@@ -53,15 +61,14 @@ function Body() {
 		setPageChange(parseInt(e.target.value))
 	}
 
-	// <!-- Toggle highlighted -->
+	// <!-- Toggle highlighted item -->
 	const handleClickIssue = (issue) => {
-		const clickIssue = document.getElementsByClassName(`${issue.id}`)[0]
-		if (clickIssue.className.includes("highlighted")) {
-			clickIssue.classList.remove("highlighted")
+		if (highlightedItem === issue.id) {
+			setHighlightedItem(null)
 		} else {
-			document.querySelector(".highlighted")?.classList.remove("highlighted")
-			clickIssue.classList.add("highlighted")
+			setHighlightedItem(issue.id)
 		}
+
 		dispatch({
 			type: "SET_HIGHLIGHTED_ISSUES",
 			highlightedIssues: issue,
@@ -78,7 +85,9 @@ function Body() {
 					<ul>
 						{issues?.map((issue) => (
 							<li
-								className={`${issue.id}`}
+								className={`${issue.id} ${
+									highlightedItem === issue.id && "highlighted"
+								}`}
 								key={issue.id}
 								onClick={() => handleClickIssue(issue)}
 							>

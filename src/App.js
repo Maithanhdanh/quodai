@@ -1,7 +1,7 @@
-import React, { useEffect } from "react"
-import "./style/css/App.css"
+import React from "react"
 import Header from "./components/Header/Header"
 import Body from "./containers/Body/Body"
+import "./style/css/App.css"
 
 function App() {
 	return (

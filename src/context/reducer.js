@@ -1,6 +1,7 @@
 import { NUM_HIGHLIGHTED_ISSUES_SHOW } from "../config/vars"
 export const initialState = {
 	highlightedIssues: [],
+	newNotiCount: 0,
 }
 
 const reducer = (state, action) => {
@@ -13,6 +14,11 @@ const reducer = (state, action) => {
 				].slice(0, NUM_HIGHLIGHTED_ISSUES_SHOW),
 			}
 
+		case "RESET_HIGHLIGHTED_ISSUES":
+			return {
+				...state,
+				newNotiCount: 0,
+			}
 		default:
 			return state
 	}
